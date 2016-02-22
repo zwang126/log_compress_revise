@@ -12,6 +12,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import static log_compressor.import_file.import_file;
+import static log_compressor.write_disk_space.write_disk_space;
 
 /**
  *
@@ -115,6 +116,11 @@ public class space_checker {
 
             hm1.put(servername, event1);
         }
+        Set<String> s = new LinkedHashSet<>(server_list);
+        List<String> server_list1 = new ArrayList<String>();
+        server_list1.addAll(s);
+        write_disk_space(hm, server_list1);
+        
         for (String server : server_list) {
             System.out.println("                               ");
             System.out.println(server);
