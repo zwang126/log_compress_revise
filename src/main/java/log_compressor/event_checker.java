@@ -21,7 +21,7 @@ import static log_compressor.write_xlsx.write_xlsx;
 public class event_checker {
     public static void event_checker() throws IOException{
         HashMap<String, List<String>> hm = new HashMap<String, List<String>>();
-        List<String> file = import_file("E:\\will_delete.txt");
+        List<String> file = import_file("D:\\log\\input.txt");
         ArrayList<Integer> server_position = new ArrayList<Integer>();
         ArrayList<String> server_list = new ArrayList<String>();
 

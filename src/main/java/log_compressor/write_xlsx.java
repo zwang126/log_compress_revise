@@ -30,7 +30,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class write_xlsx {
 
     public static void write_xlsx(HashMap<String, List<String>> map, ArrayList<String> server_list) throws FileNotFoundException, IOException {
-        File myFile = new File("E://temp/Employee.xlsx");
+        File myFile = new File("D:\\log\\log_output.xlsx");
         FileInputStream fis = new FileInputStream(myFile);
         XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);
@@ -39,12 +39,11 @@ public class write_xlsx {
         Row row1 = mySheet.createRow(rownum++);
         Cell cell2 = row1.createCell(0);
         Date date = new Date();
-
         cell2.setCellValue(date.toString());
         int i = 0;
         for (String key : server_list) {
             Row row = null;
-            if (i != 3) {
+            if (i != 22) {
                row = mySheet.createRow(rownum++);
             } else {
                rownum = rownum + 3;

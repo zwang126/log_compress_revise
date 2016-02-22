@@ -25,6 +25,7 @@ public class Log_compressor {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
