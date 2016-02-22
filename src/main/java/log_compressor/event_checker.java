@@ -78,7 +78,7 @@ public class event_checker {
         for (String server : server_list) {
             System.out.println("                               ");
             System.out.println(server);
-            System.out.println(hm.get(server).toString());
+            System.out.println(hm.get(server).toString().substring(1, hm.get(server).toString().length()-1));
             System.out.println("===============================");
 
         }

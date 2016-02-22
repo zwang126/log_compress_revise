@@ -46,8 +46,7 @@ public class Log_compressor {
                 break;
         }
         
-        //
-                //
+        
     }
 
 }
