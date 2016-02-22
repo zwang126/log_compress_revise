@@ -46,8 +46,8 @@ public class write_xlsx {
             if (i != 22) {
                row = mySheet.createRow(rownum++);
             } else {
-               rownum = rownum + 3;
-               row =  mySheet.createRow(rownum);               
+               rownum = rownum + 2;
+               row =  mySheet.createRow(rownum++);               
             }
             i++;
             int cellnum = 0;

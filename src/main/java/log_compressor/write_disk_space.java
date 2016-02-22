@@ -39,8 +39,7 @@ public class write_disk_space {
         ArrayList<String> free_space = new ArrayList<String>();
         int rownum = mySheet.getLastRowNum() + 1;
         Row row1 = mySheet.createRow(rownum++);
-        
-       
+
         Cell cell2 = row1.createCell(0);
         Date date = new Date();
         cell2.setCellValue(date.toString());
@@ -50,7 +49,7 @@ public class write_disk_space {
             ArrayList<String> disk_free = map.get(key);
 
             for (String df : disk_free) {
-                
+
                 if (!df.equals("need manual check")) {
                     int free_position1 = df.lastIndexOf("GB");
                     int free_position2 = df.lastIndexOf("free");
@@ -63,64 +62,28 @@ public class write_disk_space {
                     key_set.add(key_disk);
                 } else {
 
-                    res.put(key, "need manual check");
-                    key_set.add(key);
+                    free_space.add("need manual check");
                 }
             }
 
-            /*
-            while(it.hasNext()){
-                Map.Entry pair = (Map.Entry)it.next();
-                String res_key = (String) pair.getKey();
-                String res_res = (String) pair.getValue();
-                Cell cell = row.createCell(cellnum++);
-                cell.setCellValue(res_key);
-                cellnum = cellnum + 2;
-                Cell cell1 = row.createCell(cellnum);
-                cell1.setCellValue(res_res);
-            }
-             */
-            // Cell cell = row.createCell();
-            // cell.setCellValue(key);
-            // Cell cell1 = row.createCell(cellnum + 2);
-            //cell1.setCellValue(event.toString().substring(1, event.toString().length() - 1));
-             Row row = null;
-            if (i != 22) {
-                row = mySheet.createRow(rownum++);
-            } else {
-                rownum = rownum + 3;
-                row = mySheet.createRow(rownum);
-            }
-            i++;
-            int cellnum = 0;
-            Cell cell = row.createCell(cellnum++);
-             cell.setCellValue(key);
-             for(String val : free_space){
-                 cellnum = cellnum + 2;
-                 Cell cell1 = row.createCell(cellnum);
-                cell1.setCellValue(val);
-             }
-        }
-        
-        /*
-        for (String key_res : key_set1) {
             Row row = null;
             if (i != 22) {
                 row = mySheet.createRow(rownum++);
             } else {
-                rownum = rownum + 3;
-                row = mySheet.createRow(rownum);
+                rownum = rownum + 2;
+                row = mySheet.createRow(rownum++);
             }
             i++;
-
-            String res_res = res.get(key_res);
+            int cellnum = 0;
             Cell cell = row.createCell(cellnum++);
-            cell.setCellValue(key_res);
-            cellnum = cellnum + 2;
-            Cell cell1 = row.createCell(cellnum);
-            cell1.setCellValue(res_res);
+            cell.setCellValue(key);
+            for (String val : free_space) {
+                cellnum = cellnum + 1;
+                Cell cell1 = row.createCell(cellnum);
+                cell1.setCellValue(val);
+            }
         }
-        */
+
         FileOutputStream os = new FileOutputStream(myFile);
         myWorkBook.write(os);
     }
