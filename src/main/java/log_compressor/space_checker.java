@@ -79,7 +79,7 @@ public class space_checker {
         for (int j = 0; j < server_position.size(); j++) {
             ArrayList<String> event = new ArrayList<String>();
             String servername = file.get(server_position.get(j));
-            server_list.add(servername);
+            
             if (j != server_position.size() - 1) {
                 for (int l = server_position.get(j); l < server_position.get(j + 1); l++) {
                     if (file.get(l).startsWith("Event")) {
@@ -116,10 +116,8 @@ public class space_checker {
 
             hm1.put(servername, event1);
         }
-        Set<String> s = new LinkedHashSet<>(server_list);
-        List<String> server_list1 = new ArrayList<String>();
-        server_list1.addAll(s);
-        write_disk_space(hm, server_list1);
+        
+        write_disk_space(hm, server_list);
         
         for (String server : server_list) {
             System.out.println("                               ");
