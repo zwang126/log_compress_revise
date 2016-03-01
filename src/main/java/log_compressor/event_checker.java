@@ -5,6 +5,8 @@
  */
 package log_compressor;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +14,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import static log_compressor.import_file.import_file;
+import static log_compressor.space_checker.space_checker;
 import static log_compressor.write_xlsx.write_xlsx;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -24,7 +29,16 @@ public class event_checker {
         List<String> file = import_file("D:\\log\\input.txt");
         ArrayList<Integer> server_position = new ArrayList<Integer>();
         ArrayList<String> server_list = new ArrayList<String>();
+        File myFile = new File("D:\\log\\log_output.xlsx");
+        if (!myFile.exists()) {
+            FileOutputStream fos = new FileOutputStream(myFile);
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("sheet1");  
 
+            workbook.write(fos);
+            
+            
+        }
         int k = 0;
         for (String s : file) {
             if (s.startsWith("Server Name")) {

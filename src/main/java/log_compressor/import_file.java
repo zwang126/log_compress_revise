@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import static log_compressor.Log_compressor.actions;
 
 /**
  *
@@ -20,24 +21,45 @@ import java.util.Scanner;
  */
 public class import_file {
 
-    public static List<String> import_file(String filename) throws IOException  {
-        
+    public static List<String> import_file(String filename) throws IOException {
+
         List<String> temps = new ArrayList<String>();
 
-     
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // process the line.
-                
-                temps.add(line.toString());
+        File f = new File(filename);
+        if (f.exists() && !f.isDirectory()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    // process the line.
+
+                    temps.add(line.toString());
+
+                }
+            } catch (FileNotFoundException fe) {
+                fe.printStackTrace();
 
             }
-        } catch (FileNotFoundException fe) {
-            fe.printStackTrace();
-            
+
+        } else {
+            f.getParentFile().mkdir();
+            f.createNewFile();
+            import_file(filename);
         }
-      
+        if (temps == null || temps.size() == 0) {
+            System.out.println("please copy the log you want to deal with to D:/log/input.txt and close that file");
+            System.out.println("if finish press Y");
+            Scanner input = new Scanner(System.in);
+            String choice = input.next().toString().toUpperCase();
+            switch (choice) {
+                case "Y":
+                    import_file(filename);
+                    break;
+                default:
+                    System.out.println("please try again");
+                    actions();
+            }
+
+        }
         return temps;
     }
 

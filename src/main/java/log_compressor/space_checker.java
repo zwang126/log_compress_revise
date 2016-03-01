@@ -5,6 +5,8 @@
  */
 package log_compressor;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Set;
 import static log_compressor.import_file.import_file;
 import static log_compressor.write_disk_space.write_disk_space;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -26,7 +30,16 @@ public class space_checker {
         ArrayList<Integer> server_position = new ArrayList<Integer>();
         ArrayList<String> server_list = new ArrayList<String>();
         
-        
+        File myFile = new File("D:\\log\\log_output.xlsx");
+        if (!myFile.exists()) {
+            FileOutputStream fos = new FileOutputStream(myFile);
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("sheet1");  
+
+            workbook.write(fos);
+         
+            
+        }
         int k = 0;
         for (String s : file) {
             if (s.startsWith("Server Name")) {
@@ -76,6 +89,7 @@ public class space_checker {
 
             hm.put(servername, disk);
         }
+        /*
         for (int j = 0; j < server_position.size(); j++) {
             ArrayList<String> event = new ArrayList<String>();
             String servername = file.get(server_position.get(j));
@@ -116,7 +130,7 @@ public class space_checker {
 
             hm1.put(servername, event1);
         }
-        
+        */
         write_disk_space(hm, server_list);
         
         for (String server : server_list) {

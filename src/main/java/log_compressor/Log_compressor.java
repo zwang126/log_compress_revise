@@ -29,25 +29,29 @@ public class Log_compressor {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
-        String choice = null;
+      
+        actions();
+        
+    }
+    public static void actions() throws IOException{
+         String choice = null;
         System.out.println("welcome to pci it log compression system"); 
         System.out.println("what would you like to look on?");
-        System.out.println("Only Event or Disk and event (O/D)");
+        System.out.println(" Event or Spce (E/S)");
         Scanner input = new Scanner(System.in);
         choice = input.next().toString().toUpperCase();
         switch(choice){
-            case "O":
+            case "E":
                 event_checker();
                 break;
-            case "D":
+            case "S":
                 space_checker();
                 break;
             default:
                 System.out.println("please try again");
+                actions();
                 break;
         }
-        
-        
     }
 
 }

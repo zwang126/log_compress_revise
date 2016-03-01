@@ -18,6 +18,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import static log_compressor.event_checker.event_checker;
+import static log_compressor.space_checker.space_checker;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -31,6 +33,7 @@ public class write_xlsx {
 
     public static void write_xlsx(HashMap<String, List<String>> map, ArrayList<String> server_list) throws FileNotFoundException, IOException {
         File myFile = new File("D:\\log\\log_output.xlsx");
+        
         FileInputStream fis = new FileInputStream(myFile);
         XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);
