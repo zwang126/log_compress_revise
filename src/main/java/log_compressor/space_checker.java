@@ -23,9 +23,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Zan_Wang
  */
 public class space_checker {
-    public static void space_checker() throws IOException{
+    public static void space_checker() throws IOException, InterruptedException{
         HashMap<String, ArrayList<String>> hm = new HashMap<String, ArrayList<String>>();
-          HashMap<String, List<String>> hm1 = new HashMap<String, List<String>>();
+        HashMap<String, List<String>> hm1 = new HashMap<String, List<String>>();
         List<String> file = import_file("D:\\log\\input.txt");
         ArrayList<Integer> server_position = new ArrayList<Integer>();
         ArrayList<String> server_list = new ArrayList<String>();
@@ -136,7 +136,7 @@ public class space_checker {
         for (String server : server_list) {
             System.out.println("                               ");
             System.out.println(server);
-            System.out.println(hm.get(server).toString());
+            //System.out.println(hm.get(server).toString());
             System.out.println(hm1.get(server).toString());
             System.out.println("===============================");
 

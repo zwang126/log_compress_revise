@@ -33,11 +33,12 @@ public class write_xlsx {
 
     public static void write_xlsx(HashMap<String, List<String>> map, ArrayList<String> server_list) throws FileNotFoundException, IOException {
         File myFile = new File("D:\\log\\log_output.xlsx");
-        
+
         FileInputStream fis = new FileInputStream(myFile);
         XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);
-
+        BusinessOrInfra boi = new BusinessOrInfra();
+        boolean isInfra = boi.isInfrastructure();
         int rownum = mySheet.getLastRowNum() + 1;
         Row row1 = mySheet.createRow(rownum++);
         Cell cell2 = row1.createCell(0);
@@ -46,13 +47,21 @@ public class write_xlsx {
         int i = 0;
         for (String key : server_list) {
             Row row = null;
-            if (i != 22) {
-               row = mySheet.createRow(rownum++);
+            if (isInfra) {
+                if (i != 22) {
+                    row = mySheet.createRow(rownum++);
+                    i++;
+                } else {
+                    rownum = rownum + 2;
+                    row = mySheet.createRow(rownum++);
+                    i++;
+                }
+                
             } else {
-               rownum = rownum + 2;
-               row =  mySheet.createRow(rownum++);               
+                row = mySheet.createRow(rownum++);
+                i++;
             }
-            i++;
+
             int cellnum = 0;
 
             List<String> event = map.get(key);

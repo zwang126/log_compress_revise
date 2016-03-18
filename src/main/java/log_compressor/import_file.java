@@ -20,11 +20,13 @@ import static log_compressor.Log_compressor.actions;
  * @author Zan_Wang
  */
 public class import_file {
-
-    public static List<String> import_file(String filename) throws IOException {
+    List<String> temps = new ArrayList<String>();
+    public static List<String> import_file(String filename) throws IOException, InterruptedException {
 
         List<String> temps = new ArrayList<String>();
-
+        if(temps != null && temps.size() != 0){
+            return temps;
+        }
         File f = new File(filename);
         if (f.exists() && !f.isDirectory()) {
             try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -52,6 +54,7 @@ public class import_file {
             String choice = input.next().toString().toUpperCase();
             switch (choice) {
                 case "Y":
+                    
                     import_file(filename);
                     break;
                 default:
@@ -61,6 +64,7 @@ public class import_file {
 
         }
         return temps;
+        
     }
 
 }

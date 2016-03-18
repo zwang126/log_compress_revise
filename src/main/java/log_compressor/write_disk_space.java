@@ -38,6 +38,7 @@ public class write_disk_space {
         HashMap<String, String> res = new HashMap<String, String>();
         ArrayList<String> key_set = new ArrayList<String>();
         ArrayList<String> free_space = new ArrayList<String>();
+        BusinessOrInfra boi = new BusinessOrInfra();
         int rownum = mySheet.getLastRowNum() + 1;
         Row row1 = mySheet.createRow(rownum++);
 
@@ -45,6 +46,7 @@ public class write_disk_space {
         Date date = new Date();
         cell2.setCellValue(date.toString());
         int i = 0;
+        boolean isInfra = boi.isInfrastructure();
         for (String key : server_list) {
             free_space.clear();
             ArrayList<String> disk_free = map.get(key);
@@ -68,13 +70,21 @@ public class write_disk_space {
             }
 
             Row row = null;
-            if (i != 22) {
+            if(isInfra){
+                if (i != 22) {
                 row = mySheet.createRow(rownum++);
+                 i++;
             } else {
                 rownum = rownum + 2;
                 row = mySheet.createRow(rownum++);
+                 i++;
             }
-            i++;
+            }else{
+                row = mySheet.createRow(rownum++);
+                 i++;
+            }
+            
+           
             int cellnum = 0;
             Cell cell = row.createCell(cellnum++);
             cell.setCellValue(key);

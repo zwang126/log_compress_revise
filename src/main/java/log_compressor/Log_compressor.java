@@ -27,25 +27,28 @@ public class Log_compressor {
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, InterruptedException {
         // TODO code application logic here
-      
+
         actions();
-        
+
     }
-    public static void actions() throws IOException{
-         String choice = null;
-        System.out.println("welcome to pci it log compression system"); 
+
+    public static void actions() throws IOException, InterruptedException {
+        String choice = null;
+        System.out.println("welcome to pci it log compression system");
         System.out.println("what would you like to look on?");
-        System.out.println(" Event or Spce (E/S)");
+        System.out.println("Event or Spce (E/S)");
         Scanner input = new Scanner(System.in);
         choice = input.next().toString().toUpperCase();
-        switch(choice){
+        switch (choice) {
             case "E":
                 event_checker();
+                System.out.println("the event info has already written to D:/log/log_output.xlsx file");
                 break;
             case "S":
                 space_checker();
+                System.out.println("the space info has already written to D:/log/log_output.xlsx file");
                 break;
             default:
                 System.out.println("please try again");

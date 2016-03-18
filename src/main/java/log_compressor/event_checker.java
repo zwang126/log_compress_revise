@@ -24,7 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Zan_Wang
  */
 public class event_checker {
-    public static void event_checker() throws IOException{
+    public static void event_checker() throws IOException, InterruptedException{
         HashMap<String, List<String>> hm = new HashMap<String, List<String>>();
         List<String> file = import_file("D:\\log\\input.txt");
         ArrayList<Integer> server_position = new ArrayList<Integer>();
